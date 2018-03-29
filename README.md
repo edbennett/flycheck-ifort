@@ -19,3 +19,9 @@ flags, it only works on Linux/Mac currently.
 (add-to-list 'load-path "~/.emacs.d/flycheck-ifort")
 (require 'flycheck-ifort)
 ```
+
+## Activation
+
+`fortran-ifort` doesn't register itself as the default handler for 
+Fortran files. Once it is installed, you can activate it via
+`M-x flycheck-select-checker fortran-ifort` or `C-c ! s fortran-ifort`.
