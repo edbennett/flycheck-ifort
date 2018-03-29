@@ -1,7 +1,11 @@
 # ifort support for Flycheck
 
 The file `flycheck-ifort.el` defines the `fortran-ifort` checker for
-Flycheck, allowing Flycheck to use `ifort` on Fortran code. Because `ifort`
+Flycheck, allowing Flycheck to use `ifort` on Fortran code. It is very closely 
+based on the build-in `fortran-gfortran` checker available at [the Flycheck
+project](https://github.com/flycheck/flycheck/blob/master/flycheck.el).
+
+Because `ifort`
 can't output column numbers, a wrapper script is needed to count the length
 of the line that points at the error. (It *might* be possible to do this in
 Elisp, probably by building a custom parser rather than using the building 
@@ -22,6 +26,6 @@ flags, it only works on Linux/Mac currently.
 
 ## Activation
 
-`fortran-ifort` doesn't register itself as the default handler for 
+`fortran-ifort` doesn't register itself as the default checker for 
 Fortran files. Once it is installed, you can activate it via
 `M-x flycheck-select-checker fortran-ifort` or `C-c ! s fortran-ifort`.

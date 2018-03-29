@@ -1,0 +1,13 @@
+cff-version: 1.0.3
+message: If you use this software, please cite it as below.
+authors:
+ - family-names: Bennett
+   given-names: Ed
+   orcid: https://orcid.org/0000-0002-1678-6701
+   affiliation: Swansea University
+   email: e.j.bennett@swansea.ac.uk
+title: flycheck-ifort
+version: 0.01
+date-released: 2018-03-29
+license: GPL-3.0-or-later
+repository: https://github.com/edbennett/flycheck-ifort
