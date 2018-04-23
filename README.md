@@ -1,7 +1,7 @@
 # ifort support for Flycheck
 
-The file `flycheck-ifort.el` defines the `fortran-ifort` checker for
-Flycheck, allowing Flycheck to use `ifort` on Fortran code. It is very closely 
+The file `flycheck-ifort.el` defines the `fortran-ifort` and `fortran-nagfor` checkers for
+Flycheck, allowing Flycheck to use `ifort` and `nagfor` on Fortran code. It is very closely 
 based on the build-in `fortran-gfortran` checker available at [the Flycheck
 project](https://github.com/flycheck/flycheck/blob/master/flycheck.el).
 
@@ -13,6 +13,10 @@ blocks defined by Flycheck, but my Elisp skill level isn't up to that.)
 Because of this, and because I haven't made it aware of the Windows `ifort` 
 flags, it only works on Linux/Mac currently. 
 
+Since `nagfor` doesn't or present store column number information at all,
+`nagfor`'s output is restricted to highlighting the entire affected line.
+NAG have logged this as a feature request.
+
 ## Installation
 
 1. Clone the repository to `~/.emacs.d/flycheck-ifort`
@@ -22,10 +26,12 @@ flags, it only works on Linux/Mac currently.
 ```
 (add-to-list 'load-path "~/.emacs.d/flycheck-ifort")
 (require 'flycheck-ifort)
+(require 'flycheck-nagfor
 ```
 
 ## Activation
 
-`fortran-ifort` doesn't register itself as the default checker for 
-Fortran files. Once it is installed, you can activate it via
-`M-x flycheck-select-checker fortran-ifort` or `C-c ! s fortran-ifort`.
+`fortran-ifort` and `fortran-nagfor` don't register themselves as the default checker for 
+Fortran files. Once they are installed, you can activate one via
+`M-x flycheck-select-checker fortran-ifort` or `C-c ! s fortran-ifort` (or the
+equivalents with `nagfor` in place of `ifort`.
