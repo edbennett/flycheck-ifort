@@ -26,7 +26,7 @@ NAG have logged this as a feature request.
 ```
 (add-to-list 'load-path "~/.emacs.d/flycheck-ifort")
 (require 'flycheck-ifort)
-(require 'flycheck-nagfor
+(require 'flycheck-nagfor)
 ```
 
 ## Activation
@@ -34,4 +34,4 @@ NAG have logged this as a feature request.
 `fortran-ifort` and `fortran-nagfor` don't register themselves as the default checker for 
 Fortran files. Once they are installed, you can activate one via
 `M-x flycheck-select-checker fortran-ifort` or `C-c ! s fortran-ifort` (or the
-equivalents with `nagfor` in place of `ifort`.
+equivalents with `nagfor` in place of `ifort`).
