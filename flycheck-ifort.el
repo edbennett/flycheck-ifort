@@ -2,7 +2,7 @@
 
 
 ;;; Commentary:
-;;; Based on the fortran-ifort checker at https://github.com/flycheck/flycheck/blob/master/flycheck.el
+;;; Based on the fortran-gfortran checker at https://github.com/flycheck/flycheck/blob/master/flycheck.el
 
 ;;; Code:
 (require 'flycheck)
