@@ -55,11 +55,9 @@ In any other case, an error is signaled."
 
 (flycheck-def-option-var flycheck-ifort-warnings '("all")
                          fortran-ifort
-  "A list of warnings for GCC Fortran.
+  "A list of warnings for ifort.
 The value of this variable is a list of strings, where each string
-is the name of a warning category to enable.  By default, all
-recommended warnings and some extra warnings are enabled (as by
-`-Wall' and `-Wextra' respectively).
+is the name of a warning category to enable.
 Refer to the ifort manual at URL
 `https://software.intel.com/sites/default/files/m/f/8/5/8/0/6366-ifort.txt'
 for more information about warnings"
