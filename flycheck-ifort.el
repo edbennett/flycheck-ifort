@@ -61,8 +61,8 @@ is the name of a warning category to enable.  By default, all
 recommended warnings and some extra warnings are enabled (as by
 `-Wall' and `-Wextra' respectively).
 Refer to the ifort manual at URL
-`https://gcc.gnu.org/onlinedocs/ifort/' for more information
-about warnings"
+`https://software.intel.com/sites/default/files/m/f/8/5/8/0/6366-ifort.txt'
+for more information about warnings"
   :type '(choice (const :tag "No additional warnings" nil)
                  (repeat :tag "Additional warnings"
                          (string :tag "Warning name")))
