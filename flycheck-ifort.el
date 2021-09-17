@@ -1,5 +1,9 @@
+;;; flycheck-ifort.el --- A flycheck parser for ifort  -*- lexical-binding: t; coding: utf-8 -*-
 ;;; package --- Summary
 
+;;; URL: https://github.com/edbennett/flycheck-ifort
+;;; Package-Version: 0.0.1
+;;; Package-Requires: ((emacs "24.1"))
 
 ;;; Commentary:
 ;;; Based on the fortran-gfortran checker at https://github.com/flycheck/flycheck/blob/master/flycheck.el
@@ -45,7 +49,7 @@ In any other case, an error is signaled."
   :safe (lambda (value) (or (not value) (memq value '(free fixed))))
   :package-version '(flycheck-ifort . "0.01"))
 
-(defun flycheck-option-ifort-layout (value)
+(defun flycheck-ifort-option-ifort-layout (value)
   "Option VALUE filter for `flycheck-ifort-layout'."
   (pcase value
     (`nil nil)
@@ -84,7 +88,7 @@ Uses Intel's Fortran compiler ifort.  See URL
             "-syntax-only"
             (option "-stand" flycheck-ifort-language-standard)
             (option "" flycheck-ifort-layout concat
-                    flycheck-option-ifort-layout)
+                    flycheck-ifort-option-ifort-layout)
             (option-list "-warn" flycheck-ifort-warnings)
             (option-list "-I" flycheck-ifort-include-path concat)
             (eval flycheck-ifort-args)
