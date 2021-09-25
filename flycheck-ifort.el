@@ -1,5 +1,9 @@
+;;; flycheck-ifort.el --- A flycheck parser for ifort  -*- lexical-binding: t; coding: utf-8 -*-
 ;;; package --- Summary
 
+;;; URL: https://github.com/edbennett/flycheck-ifort
+;;; Package-Version: 0.0.1
+;;; Package-Requires: ((emacs "24.1"))
 
 ;;; Commentary:
 ;;; Based on the fortran-gfortran checker at https://github.com/flycheck/flycheck/blob/master/flycheck.el
@@ -45,7 +49,7 @@ In any other case, an error is signaled."
   :safe (lambda (value) (or (not value) (memq value '(free fixed))))
   :package-version '(flycheck-ifort . "0.01"))
 
-(defun flycheck-option-ifort-layout (value)
+(defun flycheck-ifort-option-ifort-layout (value)
   "Option VALUE filter for `flycheck-ifort-layout'."
   (pcase value
     (`nil nil)
@@ -67,29 +71,39 @@ for more information about warnings"
   :safe #'flycheck-string-list-p
   :package-version '(flycheck-ifort . "0.01"))
 
+(defun flycheck-ifort-parse-with-patterns (output checker buffer)
+  "Flycheck error parser for ifort. Converts lines which look like ------^ into a number."
+  (flycheck-parse-with-patterns
+   (replace-regexp-in-string "^-+\\^$"
+                             (lambda (s)
+                               (number-to-string (length s)))
+                             output)
+   checker buffer))
+
 (flycheck-define-checker fortran-ifort
   "An Fortran syntax checker using ifort.
 Uses Intel's Fortran compiler ifort.  See URL
 `https://software.intel.com/sites/default/files/m/f/8/5/8/0/6366-ifort.txt'."
-  :command ("~/.emacs.d/flycheck-ifort/ifortwrap"
+  :command ("ifort"
             "-syntax-only"
             (option "-stand" flycheck-ifort-language-standard)
             (option "" flycheck-ifort-layout concat
-                    flycheck-option-ifort-layout)
+                    flycheck-ifort-option-ifort-layout)
             (option-list "-warn" flycheck-ifort-warnings)
             (option-list "-I" flycheck-ifort-include-path concat)
             (eval flycheck-ifort-args)
             source)
+  :error-parser flycheck-ifort-parse-with-patterns
   :error-patterns
   ((error line-start (file-name) "(" line "): error " (message) "\n"
           (zero-or-more not-newline) "\n"
-           column line-end)
+          column line-end)
    (warning line-start (file-name) "(" line "): warning " (message) "\n"
-          (zero-or-more not-newline) "\n"
-           column line-end)
+            (zero-or-more not-newline) "\n"
+            column line-end)
    (info line-start (file-name) "(" line "): remark " (message) "\n"
-          (zero-or-more not-newline) "\n"
-           column line-end))
+         (zero-or-more not-newline) "\n"
+         column line-end))
   :modes (fortran-mode f90-mode))
 
 (provide 'flycheck-ifort)
