@@ -5,13 +5,7 @@ Flycheck, allowing Flycheck to use `ifort` and `nagfor` on Fortran code. It is v
 based on the build-in `fortran-gfortran` checker available at [the Flycheck
 project](https://github.com/flycheck/flycheck/blob/master/flycheck.el).
 
-Because `ifort`
-can't output column numbers, a wrapper script is needed to count the length
-of the line that points at the error. (It *might* be possible to do this in
-Elisp, probably by building a custom parser rather than using the building 
-blocks defined by Flycheck, but my Elisp skill level isn't up to that.)
-Because of this, and because I haven't made it aware of the Windows `ifort` 
-flags, it only works on Linux/Mac currently. 
+Currently only tested on Linux/Mac.
 
 Since `nagfor` doesn't or present store column number information at all,
 `nagfor`'s output is restricted to highlighting the entire affected line.
