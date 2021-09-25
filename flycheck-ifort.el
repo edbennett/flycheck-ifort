@@ -93,7 +93,7 @@ Uses Intel's Fortran compiler ifort.  See URL
             (option-list "-I" flycheck-ifort-include-path concat)
             (eval flycheck-ifort-args)
             source)
-  :error-parser #'flycheck-ifort-parse-with-patterns
+  :error-parser flycheck-ifort-parse-with-patterns
   :error-patterns
   ((error line-start (file-name) "(" line "): error " (message) "\n"
           (zero-or-more not-newline) "\n"
